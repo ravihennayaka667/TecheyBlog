@@ -1,7 +1,16 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using TecheyBlog.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<TechyBlogDbContext>(options=>
+options.UseSqlServer(builder.Configuration.GetConnectionString("TechBlogyDbConnectionString")));
+
+
+
 
 var app = builder.Build();
 
